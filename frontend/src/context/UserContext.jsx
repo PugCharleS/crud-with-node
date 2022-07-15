@@ -11,7 +11,7 @@ export const UserContextProvider = ({ children }) => {
     fetch(URL)
       .then((response) => response.json())
       .then((data) => setUsers(data));
-  }, []);
+  }, [users]);
 
   const deleteUser = async (id) => {
     const response = await fetch(`${URL}/${id}`, {
@@ -20,12 +20,20 @@ export const UserContextProvider = ({ children }) => {
     return response.json();
   };
 
+  const updateUser = async (user) => {
+    const response = await fetch(`${URL}/${user.id}`, {
+      method: "PATCH",
+    });
+    console.log(response.json());
+  };
+
   return (
     <UserContext.Provider
       value={{
         users,
         setUsers,
         deleteUser,
+        updateUser,
       }}
     >
       {children}

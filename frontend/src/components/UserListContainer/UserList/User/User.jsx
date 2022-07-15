@@ -3,7 +3,7 @@ import { UserContext } from "../../../../context/UserContext";
 
 const User = ({ user }) => {
   const { id, lastName, firstName, email, address, city } = user;
-  const { users, setUsers, deleteUser } = useContext(UserContext);
+  const { deleteUser, updateUser } = useContext(UserContext);
 
   return (
     <tr>
@@ -14,7 +14,9 @@ const User = ({ user }) => {
       <td>{address}</td>
       <td>{city}</td>
       <td>
-        <button className="button-30">Edit</button>
+        <button className="button-30" onClick={() => updateUser(user)}>
+          Edit
+        </button>
       </td>
       <td>
         <button className="button-30_delete" onClick={() => deleteUser(id)}>
