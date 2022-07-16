@@ -1,9 +1,14 @@
 import React, { useContext } from "react";
 import { UserContext } from "../../../../context/UserContext";
+import { Link } from "react-router-dom";
 
 const User = ({ user }) => {
   const { id, lastName, firstName, email, address, city } = user;
-  const { deleteUser, updateUser } = useContext(UserContext);
+  const { deleteUser, setUserId } = useContext(UserContext);
+
+  const editUser = () => {
+    setUserId(id);
+  };
 
   return (
     <tr>
@@ -14,9 +19,11 @@ const User = ({ user }) => {
       <td>{address}</td>
       <td>{city}</td>
       <td>
-        <button className="button-30" onClick={() => updateUser(user)}>
-          Edit
-        </button>
+        <Link to={"/form"} style={{ textDecoration: "none" }}>
+          <button className="button-30" onClick={() => editUser(id)}>
+            Edit
+          </button>
+        </Link>
       </td>
       <td>
         <button className="button-30_delete" onClick={() => deleteUser(id)}>

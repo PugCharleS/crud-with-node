@@ -1,14 +1,21 @@
 import "./App.css";
 import UserListContainer from "./components/UserListContainer/UserListContainer";
 import { UserContextProvider } from "./context/UserContext";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import UserForm from "./components/UserForm/UserForm";
 
 function App() {
   return (
-    <UserContextProvider>
-      <div className="App">
-        <UserListContainer />
-      </div>
-    </UserContextProvider>
+    <BrowserRouter>
+      <UserContextProvider>
+        <div className="App">
+          <Routes>
+            <Route exact path="/" element={<UserListContainer />} />
+            <Route exact path="/form" element={<UserForm />} />
+          </Routes>
+        </div>
+      </UserContextProvider>
+    </BrowserRouter>
   );
 }
 

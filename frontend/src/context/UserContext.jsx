@@ -6,6 +6,7 @@ export const UserContextProvider = ({ children }) => {
   const URL = "https://pugcharles-crud-with-node.herokuapp.com/api/users";
 
   const [users, setUsers] = useState([]);
+  const [userId, setUserId] = useState();
 
   useEffect(() => {
     fetch(URL)
@@ -21,10 +22,18 @@ export const UserContextProvider = ({ children }) => {
   };
 
   const updateUser = async (user) => {
-    const response = await fetch(`${URL}/${user.id}`, {
+    const { id, lastName, firstName, email, address, city } = user;
+    const response = await fetch(`${URL}/${id}`, {
       method: "PATCH",
+      body: {
+        lastName: lastName,
+        firstName: firstName,
+        email: email,
+        address: address,
+        city: city,
+      },
     });
-    console.log(response.json());
+    return response.json();
   };
 
   return (
@@ -34,6 +43,8 @@ export const UserContextProvider = ({ children }) => {
         setUsers,
         deleteUser,
         updateUser,
+        userId,
+        setUserId,
       }}
     >
       {children}
