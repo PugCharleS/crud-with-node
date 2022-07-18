@@ -3,7 +3,7 @@ import { createContext, useState, useEffect } from "react";
 export const UserContext = createContext([]);
 
 export const UserContextProvider = ({ children }) => {
-  const URL = "https://pugcharles-crud-with-node.herokuapp.com/api/users";
+  const URL = "https://crud-with-node-production.up.railway.app/api/users";
 
   const [users, setUsers] = useState([]);
   const [userId, setUserId] = useState();
@@ -21,18 +21,39 @@ export const UserContextProvider = ({ children }) => {
     return response.json();
   };
 
+  const postUser = async (user) => {
+    const jsonData = {
+      ...user,
+    };
+
+    const response = await fetch(`${URL}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      mode: "cors",
+      body: JSON.stringify(jsonData),
+    });
+
+    return response.json();
+  };
+
   const updateUser = async (user) => {
-    const { id, lastName, firstName, email, address, city } = user;
+    const { id } = user;
+
+    console.log(user);
+
+    const jsonData = {
+      ...user,
+    };
+
+    console.log(jsonData);
+
     const response = await fetch(`${URL}/${id}`, {
       method: "PATCH",
-      body: {
-        lastName: lastName,
-        firstName: firstName,
-        email: email,
-        address: address,
-        city: city,
-      },
+      headers: { "Content-Type": "application/json" },
+      mode: "no-cors",
+      body: JSON.stringify(jsonData),
     });
+
     return response.json();
   };
 
@@ -42,6 +63,7 @@ export const UserContextProvider = ({ children }) => {
         users,
         setUsers,
         deleteUser,
+        postUser,
         updateUser,
         userId,
         setUserId,

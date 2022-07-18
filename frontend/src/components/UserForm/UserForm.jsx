@@ -35,24 +35,22 @@ const UserForm = () => {
 
   const handleUser = () => {
     const newUser = {
-      id: userId,
+      id: user.id,
       lastName: lastName,
       firstName: firstName,
       email: email,
       address: address,
       city: city,
     };
-    setUser(newUser);
-    console.log(user);
-    updateUser(user);
+    updateUser(newUser);
   };
 
   return (
     <>
       <div className="container">
         <div className="wrapper">
-          <div className="title">User Form</div>
-          <form action="/" method="PATCH">
+          <div className="title">Edit User</div>
+          <form action="/">
             <div className="field">
               <input
                 type="text"

@@ -3,6 +3,7 @@ import UserListContainer from "./components/UserListContainer/UserListContainer"
 import { UserContextProvider } from "./context/UserContext";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import UserForm from "./components/UserForm/UserForm";
+import PostUserForm from "./components/PostUserForm/PostUserForm";
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
         <div className="App">
           <Routes>
             <Route exact path="/" element={<UserListContainer />} />
-            <Route exact path="/form" element={<UserForm />} />
+            <Route exact path="/edit-form" element={<UserForm />} />
+            <Route exact path="/form" element={<PostUserForm />} />
           </Routes>
         </div>
       </UserContextProvider>

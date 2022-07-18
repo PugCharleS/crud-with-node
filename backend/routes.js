@@ -16,6 +16,10 @@ class Users {
 
   // GET_ALL_USER
   getUsers = (req, res) => {
+    con.connect(() => {
+      console.log("Connected!");
+    });
+
     let sql = "SELECT * FROM users";
     con.query(sql, (err, results) => {
       if (err) throw err;

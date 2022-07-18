@@ -19,7 +19,7 @@ const User = ({ user }) => {
       <td>{address}</td>
       <td>{city}</td>
       <td>
-        <Link to={"/form"} style={{ textDecoration: "none" }}>
+        <Link to={"/edit-form"} style={{ textDecoration: "none" }}>
           <button className="button-30" onClick={() => editUser(id)}>
             Edit
           </button>
