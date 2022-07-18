@@ -35,14 +35,13 @@ const UserForm = () => {
 
   const handleUser = () => {
     const newUser = {
-      id: user.id,
       lastName: lastName,
       firstName: firstName,
       email: email,
       address: address,
       city: city,
     };
-    updateUser(newUser);
+    updateUser(userId, newUser);
   };
 
   return (

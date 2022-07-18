@@ -26,6 +26,8 @@ export const UserContextProvider = ({ children }) => {
       ...user,
     };
 
+    console.log(jsonData);
+
     const response = await fetch(`${URL}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -36,11 +38,7 @@ export const UserContextProvider = ({ children }) => {
     return response.json();
   };
 
-  const updateUser = async (user) => {
-    const { id } = user;
-
-    console.log(user);
-
+  const updateUser = async (id, user) => {
     const jsonData = {
       ...user,
     };
@@ -50,7 +48,7 @@ export const UserContextProvider = ({ children }) => {
     const response = await fetch(`${URL}/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      mode: "no-cors",
+      mode: "cors",
       body: JSON.stringify(jsonData),
     });
 
