@@ -12,9 +12,8 @@ const UserForm = () => {
   let [user, setUser] = useState({});
 
   useEffect(() => {
-    user = users.filter((user) => user.id === userId);
-    setUser(...user);
-    console.log(user);
+    const userFound = users.filter((user) => user.id === userId);
+    setUser(...userFound);
   }, []);
 
   const handlelastNameChange = (e) => {
@@ -41,6 +40,7 @@ const UserForm = () => {
       address: address,
       city: city,
     };
+    console.log(newUser);
     updateUser(userId, newUser);
   };
 
